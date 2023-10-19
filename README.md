@@ -74,4 +74,4 @@ You can reach me on the following social media platforms:
 
 Feel free to connect with me or follow for updates!
 
-## Happy Developmnet 👍😺🖤
+## Happy Development 👍😺🖤
