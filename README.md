@@ -33,10 +33,18 @@ This To-Do app is a full-stack application built using React.js, Vite, MDB Boots
    git clone https://github.com/s4chin-verma/ToDo-React.git
 
 2. Open the project folder in your code editor.
+   
+3. Environment Variables
 
-3. Open the terminal of your code editor.
+   Before running the frontend or backend, make sure to set up your environment variables. Create a `.env` file in the respective directories and define the following variables:
+   
+      - `PORT`: Set the server port, e.g., `PORT = 4000`
+      - `MONGO_URL`: Specify your MongoDB connection URL, e.g., `MONGO_URL = mongodb://localhost:27017/mydatabase`
+      - `JWT_SECRET`: Set your JSON Web Token secret, e.g., `JWT_SECRET = mysecretkey`
 
-4. Start the frontend development server:  
+5. Open the terminal of your code editor.
+
+6. Start the frontend development server:  
 
    ```bash
    cd to-do
@@ -50,6 +58,7 @@ This will launch the frontend application on http://localhost:5173.
    cd server
    npm install
    npx nodemon index.js
+   
 
 ## Contributing
 
