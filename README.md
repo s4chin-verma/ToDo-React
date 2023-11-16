@@ -1,6 +1,6 @@
 # To-Do App
 
-![Alt Text](screenshot/Screenshot%202023-10-20%20025047.png)
+![Alt Text](screenshot/Screenshot%202023-10-20%20025047.jpg)
 
 **Summary**
 
@@ -14,8 +14,8 @@ This To-Do app is a full-stack application built using React.js, Vite, MDB Boots
 
 ## Screenshots
 
-![Alt Text](screenshot/Screenshot%202023-10-20%20025101.png)
-![Alt Text](./screenshot/Screenshot%202023-10-20%20025111.png)
+![Alt Text](screenshot/Screenshot%202023-10-20%20025101.jpg)
+![Alt Text](./screenshot/Screenshot%202023-10-20%20025111.jpg)
 
 ## Getting Started
 
