@@ -1,6 +1,6 @@
 # To-Do App
 
-![Alt Text](screenshot/Screenshot%202023-10-20%20025047.jpg)
+![Screenshot 2023-10-20 025047](https://github.com/s4chin-verma/ToDo-React/assets/101526717/cde8ff81-cc55-44e2-bdd0-d439a492720c)
 
 **Summary**
 
@@ -13,9 +13,8 @@ This To-Do app is a full-stack application built using React.js, Vite, MDB Boots
 - **Authentication**: JWT Tokens
 
 ## Screenshots
-
-![Alt Text](screenshot/Screenshot%202023-10-20%20025101.jpg)
-![Alt Text](./screenshot/Screenshot%202023-10-20%20025111.jpg)
+![Screenshot 2023-10-20 025101](https://github.com/s4chin-verma/ToDo-React/assets/101526717/ddbec349-9864-4379-828a-277e08eb228e)
+![Screenshot 2023-10-20 025111](https://github.com/s4chin-verma/ToDo-React/assets/101526717/9e40a59b-73d7-4c73-af9d-dda5f09db763)
 
 ## Getting Started
 
