@@ -28,18 +28,17 @@ export default function Register() {
           email,
           password,
         });
-        if (data.status === false) {
-          toast.error(data.msg, toastOptions);
-        }
         if (data.status === true) {
           localStorage.setItem("Todo-user", JSON.stringify(data.user));
           navigate("/");
         }
       } catch (error) {
+        toast.error(error.response.data.msg, toastOptions);
         console.error("Error sending data to the server:", error);
       }
     }
   };
+
 
   const toastOptions = {
     position: "bottom-right",
@@ -136,7 +135,7 @@ export default function Register() {
               </MDBCol>
 
               <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-                <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp'alt='sa' fluid />
+                <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp' alt='sa' fluid />
               </MDBCol>
 
             </MDBRow>

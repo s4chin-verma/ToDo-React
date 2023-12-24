@@ -1,0 +1,7 @@
+{
+  "routes": [
+    { "src": "/", "dest": "/" },
+    { "src": "/register", "dest": "/" },
+    { "src": "/todolist", "dest": "/" }
+  ]
+}

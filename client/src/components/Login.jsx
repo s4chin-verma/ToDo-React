@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
@@ -27,31 +27,56 @@ export default function Login() {
         password: ""
     });
 
+    const token = localStorage.getItem("token");
+    useEffect(() => {
+        if (token) {
+            navigate("/todolist");
+        }
+    }, [token]);
+
+
+    const clearLocalStorageAfterInterval = (interval) => {
+        console.log("Your token will be expire after 1 hour");
+
+        setTimeout(() => {
+            alert("Your token had been expired please login again")
+            console.log("Inside setTimeout, clearing local storage");
+            localStorage.removeItem("token");
+            localStorage.removeItem("Todo-user");
+            navigate("/");
+        }, interval);
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (handleValidation()) {
             const { username, password } = values;
+            setValues({
+                ...values,
+                username: username.trim(),
+            });
+
             try {
                 const { data } = await axios.post(loginRoute, {
-                    username,
+                    username: username.trim(),
                     password,
                 });
-    
+
                 if (data.status === true) {
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("Todo-user", JSON.stringify(data.user));
                     navigate("/todolist");
+                    clearLocalStorageAfterInterval(3600000);
                 }
             } catch (error) {
-                if (error.response && error.response.status === 401) {
-                    toast.error("User not found. Please check your username and password.", toastOptions);
-                } else {
-                    console.error("Error sending data to the server:", error);
-                }
+                toast.error(error.response.data.msg, toastOptions);
+                console.error("Error sending data to the server:", error);
             }
         }
     };
-    
+
+
+
     const toastOptions = {
         position: "bottom-right",
         autoClose: 8000,
@@ -69,16 +94,23 @@ export default function Login() {
 
     const handleValidation = () => {
         const { username, password } = values;
-        if (username.trim() === "" || password.trim() === "") {
-            toast.error("Please enter a valid username and password", toastOptions);
+
+        if (username.trim().length === 0) {
+            toast.error("Please Enter username", toastOptions);
             return false;
         }
+
+        if (password.trim().length === 0) {
+            toast.error("Please Enter Password", toastOptions);
+            return false;
+        }
+
         return true;
     };
 
+
     const handleChange = (event) => {
         setValues({ ...values, [event.target.name]: event.target.value });
-
     };
 
     return (

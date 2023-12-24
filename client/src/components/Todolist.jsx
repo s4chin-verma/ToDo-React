@@ -17,7 +17,7 @@ import {
   MDBTooltip,
 } from "mdb-react-ui-kit";
 
-export default function App() {
+export default function TodoList() {
   const navigate = useNavigate();
   const [taskText, setTaskText] = useState("");
   const [tasks, setTasks] = useState([]);
@@ -51,6 +51,12 @@ export default function App() {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("token");
+      if (!token) {
+        console.log("i got triggered")
+        navigate("/");
+        return;
+      }
+
       const response = await axios.get(getAllTasksRoute, {
         headers: {
           "x-auth-token": token,
@@ -59,11 +65,14 @@ export default function App() {
 
       if (response.data.status === true) {
         setTasks(response.data.tasks);
+      } else {
+        console.error("Error fetching tasks:", response.data.msg);
       }
     } catch (error) {
       console.error("Error fetching tasks:", error);
     }
   };
+
 
   const handleDeleteTask = async (taskId) => {
     try {
@@ -146,9 +155,6 @@ export default function App() {
                             value={taskText}
                             onChange={(e) => setTaskText(e.target.value)}
                           />
-                          <MDBTooltip tag="a" wrapperProps={{ href: "#!" }} title="Set due date">
-                            <MDBIcon fas icon="calendar-alt" size="lg" className="me-3" />
-                          </MDBTooltip>
                           <div>
                             <MDBBtn type="submit">Add</MDBBtn>
                           </div>

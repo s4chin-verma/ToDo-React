@@ -14,7 +14,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import Logout from './Logout';
 
-export default function App() {
+export default function NavBar() {
     const [showNav, setShowNav] = useState(false);
     const location = useLocation();
 
