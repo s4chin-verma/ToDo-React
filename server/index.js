@@ -11,13 +11,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "https://to-do-frontend-s4chin-verma.vercel.app",
-    "https://to-do-frontend-eta.vercel.app",
-    "https://to-do-frontend-git-main-s4chin-verma.vercel.app",
-    "https://to-do-frontend-74dfemj3m-s4chin-verma.vercel.app",
-  ],
+  origin: [process.env.FRONTEND_URL],
   credentials: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
