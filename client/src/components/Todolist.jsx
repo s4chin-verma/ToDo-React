@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
-import NavBar2 from '../components/NavBar';
-import { createTaskRoute, deleteTaskRoute, getAllTasksRoute, isCompleted } from "../utils/APIRoutes";
+import axios from "axios";
+import NavBar2 from "../components/NavBar";
+import {
+  createTaskRoute,
+  deleteTaskRoute,
+  getAllTasksRoute,
+  isCompleted,
+} from "../utils/APIRoutes";
 import {
   MDBBtn,
   MDBCard,
@@ -22,8 +27,10 @@ export default function TodoList() {
   const [taskText, setTaskText] = useState("");
   const [tasks, setTasks] = useState([]);
   const [isInitialized, setIsInitialized] = useState(false);
-  const sortedTasks = tasks.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  const userName = JSON.parse(localStorage.getItem('Todo-user')).username;
+  const sortedTasks = tasks
+    .slice()
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const userName = JSON.parse(localStorage.getItem("Todo-user")).username;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,7 +59,7 @@ export default function TodoList() {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
-        console.log("i got triggered")
+        console.log("i got triggered");
         navigate("/");
         return;
       }
@@ -72,7 +79,6 @@ export default function TodoList() {
       console.error("Error fetching tasks:", error);
     }
   };
-
 
   const handleDeleteTask = async (taskId) => {
     try {
@@ -108,9 +114,8 @@ export default function TodoList() {
     }
   };
 
-
   function formatDate(dateString) {
-    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const options = { day: "numeric", month: "long", year: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   }
 
@@ -125,7 +130,6 @@ export default function TodoList() {
       }
     }
   }, [navigate, isInitialized]);
-
 
   return (
     <>
@@ -166,7 +170,11 @@ export default function TodoList() {
                 <hr className="my-4" />
 
                 {sortedTasks.map((task) => (
-                  <MDBListGroup horizontal className="rounded-0 bg-transparent" key={task._id}>
+                  <MDBListGroup
+                    horizontal
+                    className="rounded-0 bg-transparent"
+                    key={task._id}
+                  >
                     <MDBListGroupItem className="d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
                       <MDBCheckbox
                         name="flexCheck"
@@ -178,7 +186,11 @@ export default function TodoList() {
                     </MDBListGroupItem>
                     <MDBListGroupItem className="px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
                       <p
-                        className={`lead fw-normal mb-0 ${task.isChecked ? 'text-decoration-line-through text-danger' : ''}`}
+                        className={`lead fw-normal mb-0 ${
+                          task.isChecked
+                            ? "text-decoration-line-through text-danger"
+                            : ""
+                        }`}
                       >
                         {task.text}
                       </p>
@@ -186,7 +198,12 @@ export default function TodoList() {
                     <MDBListGroupItem className="ps-3 pe-0 py-1 rounded-0 border-0 bg-transparent">
                       <div className="d-flex flex-row justify-content-end mb-1">
                         <MDBTooltip tag="a" title="Delete todo">
-                          <MDBIcon fas icon="trash-alt" color="danger" onClick={() => handleDeleteTask(task._id)} />
+                          <MDBIcon
+                            fas
+                            icon="trash-alt"
+                            color="danger"
+                            onClick={() => handleDeleteTask(task._id)}
+                          />
                         </MDBTooltip>
                       </div>
                       <div className="text-end text-muted">

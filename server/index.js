@@ -11,13 +11,12 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: [process.env.FRONTEND_URL],
+  origin: [process.env.DEVELOPMENT_URL, process.env.PRODUCTION_URL],
   credentials: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
 
 app.use(cors(corsOptions));
-
 app.use(express.json());
 
 app.use("/api/auth", userRoute);
@@ -25,20 +24,13 @@ app.use("/api/route", verifyToken, taskRoute);
 
 app.get("/", (req, res) => {
   res.json({
-    message:
-      "Welcome to the Todo List API. This server powers the backend of the Todo List application, handling data and logic. For a stylish and interactive frontend, please visit the corresponding Todo List frontend application. https://to-do-s4chin-verma.vercel.app/",
+    message: `Welcome to the Todo List API. This server powers the backend of the Todo List application, handling data and logic. For a stylish and interactive frontend, please visit the corresponding Todo List frontend application. ${process.env.PRODUCTION_URL}`,
   });
 });
 
 app.use((err, req, res, next) => {
-  if (process.env.NODE_ENV === "development") {
-    console.error("Server Error:", err);
-    res
-      .status(500)
-      .json({ message: "Something went wrong", error: err.message });
-  } else {
-    res.status(500).json({ message: "Something went wrong" });
-  }
+  console.error("Server Error:", err);
+  res.status(500).json({ message: "Something went wrong" });
 });
 
 mongoose
